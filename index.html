@@ -1,32 +1,71 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>AR Hiro — Прыгающий шар</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>AR Snowman — Hiro Marker</title>
+
   <!-- A-Frame -->
   <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-  <!-- AR.js (используем стабильную копию из AR-js-org) -->
+
+  <!-- AR.js стабильная версия -->
   <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
+
+  <!-- THREE.js JSON Loader -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/js/loaders/ObjectLoader.js"></script>
+
   <style>
-    html,body { margin:0; height:100%; background:#000; }
-    a-scene { width:100%; height:100%; }
-    #hint { position: fixed; left:10px; bottom:10px; color:#fff; background: #0008; padding:8px; border-radius:6px; font-family:sans-serif; z-index:999; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #000;
+      height: 100%;
+      touch-action: none;
+    }
+    a-scene {
+      width: 100vw;
+      height: 100vh;
+    }
   </style>
 </head>
+
 <body>
-  <div id="hint">Откройте на мобильном (Chrome Android) в HTTPS. Наведите на маркер <strong>Hiro</strong>.</div>
 
-  <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;'>
-    <!-- маркер Hiro preset -->
-    <a-marker preset="hiro">
-      <!-- прыгающий шар -->
-      <a-sphere id="ball" position="0 0.25 0" radius="0.25" color="#ff4444"
-        animation="property: position; dir: alternate; dur: 600; easing: easeInOutQuad; loop: true; to: 0 1.2 0">
-      </a-sphere>
-    </a-marker>
+<a-scene
+  vr-mode-ui="enabled: false"
+  renderer="logarithmicDepthBuffer: true;"
+  embedded
+  arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+  
+  <!-- Маркер Hiro -->
+  <a-marker id="hiroMarker" preset="hiro">
 
-    <a-entity camera></a-entity>
-  </a-scene>
+    <!-- Место для снеговика -->
+    <a-entity id="snowman" position="0 0 0" scale="0.5 0.5 0.5"></a-entity>
+
+  </a-marker>
+
+  <a-entity camera></a-entity>
+
+</a-scene>
+
+<script>
+  // Загружаем модель JSON
+  const loader = new THREE.ObjectLoader();
+  loader.load("snowman.json", function(obj) {  
+    const entity = document.querySelector("#snowman");
+
+    // Вставляем 3D модель внутрь A-Frame объекта
+    entity.object3D.add(obj);
+
+    // Анимация «прыжка»
+    entity.setAttribute("animation", 
+      "property: position; dir: alternate; dur: 900; easing: easeInOutSine; loop: true; to: 0 1 0"
+    );
+  });
+</script>
+
 </body>
 </html>
