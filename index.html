@@ -20,13 +20,12 @@
 </head>
 
 <body style="margin: 0; overflow: hidden;">
-  <div id="topText">0.1.30</div>
- <a-marker preset="hiro">
-        <a-entity
-          position="0 0 0"
-          scale="0.05 0.05 0.05"
-          gltf-model="https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"
-        ></a-entity>
+  <div id="topText">0.1.31</div>
+  <a-scene embedded arjs>
+     <a-marker preset="hiro">
+        <a-assets>
+            <a-asset-item id="my-glb-model" src="path/to/your-model.glb"></a-asset-item>
+        </a-assets>
       </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
