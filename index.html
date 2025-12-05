@@ -15,17 +15,25 @@
     font-size: 24px;
     font-weight: bold;
     text-shadow: 0 0 5px black;
-    z-index: 9999; /* чтобы было поверх камеры */
+    z-index: 9999;
   }
 </style>
   <body style="margin : 0px; overflow: hidden;">
-    <div id="topText">build 0.1.54</div>
+    <div id="topText">build 0.1.55</div>
      <a-scene
     embedded
     vr-mode-ui="enabled: false"
     renderer="logarithmicDepthBuffer: true; precision: medium;"
     arjs="sourceType: webcam; facingMode: environment; debugUIEnabled: false;">
-      <a-marker type='pattern' url='pattern3.patt'>
+      <a-marker                 
+                id="animated-marker"
+                type="pattern"
+                preset="custom"
+                url="assets/marker.patt"
+                raycaster="objects: .clickable"
+                emitevents="true"
+                cursor="fuse: false; rayOrigin: mouse;"
+                id="markerA">
         <a-entity position="0 0 0" scale="4 4 4" gltf-model="Snegovik/SnegovikBelokuriha_trek1.gltf" animation-mixer/>
       </a-marker>
       <a-entity camera></a-entity>
