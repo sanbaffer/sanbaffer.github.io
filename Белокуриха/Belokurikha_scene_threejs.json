@@ -1,0 +1,493 @@
+{
+  "objects": [
+    {
+      "id": -182099400,
+      "object_list_id": 8,
+      "transform_pos_x": 0.78,
+      "transform_pos_y": 1.97,
+      "transform_pos_z": -5,
+      "transform_rot_x": 0,
+      "transform_rot_y": 0,
+      "transform_rot_z": 0,
+      "transform_rot_w": 0,
+      "transform_scale": 1,
+      "scene_template_transform": "",
+      "vars": {
+        "Color": "0xffffff",
+        "Intensity": 0.9
+      },
+      "created_at": "2023-12-29T08:45:40.000000Z",
+      "updated_at": "2023-12-29T08:45:40.000000Z",
+      "transform_scale_x": 1,
+      "transform_scale_y": 1,
+      "transform_scale_z": 1,
+      "visible": true,
+      "object_list_version_id": 5,
+      "caption": "Цвет 0xffffff, Интенсивность 0.9",
+      "captionLong": "Цвет 0xffffff, Интенсивность 0.9\t(Направленный свет)",
+      "behaviours": []
+    },
+    {
+      "id": -182099500,
+      "object_list_id": 12,
+      "transform_pos_x": 0,
+      "transform_pos_y": 0,
+      "transform_pos_z": 0,
+      "transform_rot_x": 0,
+      "transform_rot_y": 0,
+      "transform_rot_z": 0,
+      "transform_rot_w": 0,
+      "transform_scale": 1,
+      "scene_template_transform": "",
+      "vars": {
+        "Color": "0x285C77",
+        "Intensity": 0.75
+      },
+      "created_at": "2023-12-29T08:45:40.000000Z",
+      "updated_at": "2023-12-29T08:45:40.000000Z",
+      "transform_scale_x": 1,
+      "transform_scale_y": 1,
+      "transform_scale_z": 1,
+      "visible": true,
+      "object_list_version_id": 9,
+      "caption": "Цвет 0x285C77, Интенсивность 0.75",
+      "captionLong": "Цвет 0x285C77, Интенсивность 0.75\t(Заполняющий свет)",
+      "behaviours": []
+    },
+    {
+      "id": -182099600,
+      "object_list_id": 3016,
+      "transform_pos_x": 0,
+      "transform_pos_y": -2.65,
+      "transform_pos_z": 0,
+      "transform_rot_x": 4.71,
+      "transform_rot_y": 0,
+      "transform_rot_z": 0,
+      "transform_rot_w": 0,
+      "transform_scale": 1,
+      "scene_template_transform": "",
+      "vars": {},
+      "created_at": "2023-12-29T08:45:40.000000Z",
+      "updated_at": "2023-12-29T08:45:40.000000Z",
+      "transform_scale_x": 2.2,
+      "transform_scale_y": 6.58,
+      "transform_scale_z": 2.2,
+      "visible": true,
+      "object_list_version_id": 60,
+      "captionLong": "\t(Occlusion Cylinder)",
+      "behaviours": []
+    },
+    {
+      "id": -182099700,
+      "object_list_id": 2,
+      "transform_pos_x": 0,
+      "transform_pos_y": -2.65,
+      "transform_pos_z": 1.54,
+      "transform_rot_x": 4.7123889803847,
+      "transform_rot_y": 0,
+      "transform_rot_z": 0,
+      "transform_rot_w": 0,
+      "transform_scale": 1,
+      "scene_template_transform": "",
+      "vars": {
+        "url": "https://mywebar-a.akamaihd.net/19562/339405/Gift_Snowman_BLK_1.glb?hash=fdc96c5148d77ed3eaea0a4b427234cf"
+      },
+      "created_at": "2023-12-29T08:45:40.000000Z",
+      "updated_at": "2023-12-29T08:45:40.000000Z",
+      "transform_scale_x": 0.48,
+      "transform_scale_y": 0.48,
+      "transform_scale_z": 0.48,
+      "visible": true,
+      "object_list_version_id": 2,
+      "caption": "Gift_Snowman_BLK_1.glb",
+      "captionLong": "Gift_Snowman_BLK_1.glb\t(3D Model)",
+      "behaviours": [
+        {
+          "id": 1312803,
+          "behaviour_list_id": 7,
+          "page_object_id": -182099700,
+          "source_page_object_id": -182099700,
+          "vars": {
+            "Index": "0",
+            "Loop": "1",
+            "Stop_animation_on_last_frame": "1",
+            "Delay": 14
+          },
+          "created_at": "2023-12-29T08:45:40.000000Z",
+          "updated_at": "2023-12-29T08:45:40.000000Z"
+        },
+        {
+          "id": 1313021,
+          "behaviour_list_id": 14,
+          "page_object_id": -182099700,
+          "source_page_object_id": -182100200,
+          "vars": {
+            "Move_end_position": "0;8;1.54",
+            "Move_speed": 9999.91,
+            "Delay": "0"
+          },
+          "created_at": "2023-12-29T11:04:04.000000Z",
+          "updated_at": "2023-12-29T11:04:04.000000Z"
+        }
+      ]
+    },
+    {
+      "id": -182099800,
+      "object_list_id": 3071,
+      "transform_pos_x": 0,
+      "transform_pos_y": 0,
+      "transform_pos_z": 0,
+      "transform_rot_x": 0,
+      "transform_rot_y": 0,
+      "transform_rot_z": 0,
+      "transform_rot_w": 0,
+      "transform_scale": 1,
+      "scene_template_transform": "",
+      "vars": {
+        "__is_object": true
+      },
+      "created_at": "2023-12-29T08:45:40.000000Z",
+      "updated_at": "2023-12-29T08:45:40.000000Z",
+      "transform_scale_x": 1,
+      "transform_scale_y": 1,
+      "transform_scale_z": 1,
+      "visible": true,
+      "object_list_version_id": 142,
+      "captionLong": "\t(Frustum Disabler)",
+      "behaviours": []
+    },
+    {
+      "id": -182099900,
+      "object_list_id": 8,
+      "transform_pos_x": -1.32,
+      "transform_pos_y": 3,
+      "transform_pos_z": -4.94,
+      "transform_rot_x": 0,
+      "transform_rot_y": 0,
+      "transform_rot_z": 0,
+      "transform_rot_w": 0,
+      "transform_scale": 1,
+      "scene_template_transform": "",
+      "vars": {
+        "Color": "0xE3EA81",
+        "Intensity": 0.7
+      },
+      "created_at": "2023-12-29T08:45:40.000000Z",
+      "updated_at": "2023-12-29T08:45:40.000000Z",
+      "transform_scale_x": 1,
+      "transform_scale_y": 1,
+      "transform_scale_z": 1,
+      "visible": true,
+      "object_list_version_id": 5,
+      "caption": "Цвет 0xE3EA81, Интенсивность 0.7",
+      "captionLong": "Цвет 0xE3EA81, Интенсивность 0.7\t(Направленный свет)",
+      "behaviours": []
+    },
+    {
+      "id": -182100000,
+      "object_list_id": 8,
+      "transform_pos_x": 0.6,
+      "transform_pos_y": -4.01,
+      "transform_pos_z": 1.79,
+      "transform_rot_x": 0,
+      "transform_rot_y": 0,
+      "transform_rot_z": 0,
+      "transform_rot_w": 0,
+      "transform_scale": 1,
+      "scene_template_transform": "",
+      "vars": {
+        "Color": "0xF73BC5",
+        "Intensity": 0.35
+      },
+      "created_at": "2023-12-29T08:45:40.000000Z",
+      "updated_at": "2023-12-29T08:45:40.000000Z",
+      "transform_scale_x": 1,
+      "transform_scale_y": 1,
+      "transform_scale_z": 1,
+      "visible": true,
+      "object_list_version_id": 5,
+      "caption": "Цвет 0xF73BC5, Интенсивность 0.35",
+      "captionLong": "Цвет 0xF73BC5, Интенсивность 0.35\t(Направленный свет)",
+      "behaviours": []
+    },
+    {
+      "id": -182100100,
+      "object_list_id": 2,
+      "transform_pos_x": 0,
+      "transform_pos_y": -2.65,
+      "transform_pos_z": 1.54,
+      "transform_rot_x": 4.7123889803847,
+      "transform_rot_y": 0,
+      "transform_rot_z": 0,
+      "transform_rot_w": 0,
+      "transform_scale": 1,
+      "scene_template_transform": "",
+      "vars": {
+        "url": "https://mywebar-a.akamaihd.net/19562/346551/SnegovikBelokuriha_trek1.glb"
+      },
+      "created_at": "2023-12-29T08:45:40.000000Z",
+      "updated_at": "2023-12-29T08:45:40.000000Z",
+      "transform_scale_x": 2,
+      "transform_scale_y": 2,
+      "transform_scale_z": 2,
+      "visible": true,
+      "object_list_version_id": 2,
+      "caption": "SnegovikBelokuriha_trek1.glb",
+      "captionLong": "SnegovikBelokuriha_trek1.glb\t(3D Model)",
+      "behaviours": [
+        {
+          "id": 1312804,
+          "behaviour_list_id": 7,
+          "page_object_id": -182100100,
+          "source_page_object_id": -182100100,
+          "vars": {
+            "Index": 0,
+            "Loop": 0,
+            "Stop_animation_on_last_frame": "1",
+            "Delay": 3
+          },
+          "created_at": "2023-12-29T08:45:40.000000Z",
+          "updated_at": "2023-12-29T08:45:40.000000Z"
+        },
+        {
+          "id": 1312805,
+          "behaviour_list_id": 12,
+          "page_object_id": -182100100,
+          "source_page_object_id": -182100100,
+          "vars": {
+            "Move_end_position": "0;-2.65;1.54",
+            "Move_speed": 9999.91,
+            "Delay": 3
+          },
+          "created_at": "2023-12-29T08:45:40.000000Z",
+          "updated_at": "2023-12-29T08:45:40.000000Z"
+        },
+        {
+          "id": 1312806,
+          "behaviour_list_id": 12,
+          "page_object_id": -182100100,
+          "source_page_object_id": -182100100,
+          "vars": {
+            "Move_end_position": "0;8;1.54",
+            "Move_speed": 9999.91,
+            "Delay": 14
+          },
+          "created_at": "2023-12-29T08:45:40.000000Z",
+          "updated_at": "2023-12-29T08:45:40.000000Z"
+        }
+      ]
+    },
+    {
+      "id": -182100200,
+      "object_list_id": 2,
+      "transform_pos_x": 0,
+      "transform_pos_y": 8,
+      "transform_pos_z": 1.52,
+      "transform_rot_x": 4.7123889803847,
+      "transform_rot_y": 0,
+      "transform_rot_z": 0,
+      "transform_rot_w": 0,
+      "transform_scale": 1,
+      "scene_template_transform": "",
+      "vars": {
+        "url": "https://mywebar-a.akamaihd.net/19562/346551/SnegovikBelokuriha_trek2.glb"
+      },
+      "created_at": "2023-12-29T08:45:40.000000Z",
+      "updated_at": "2023-12-29T08:45:40.000000Z",
+      "transform_scale_x": 2,
+      "transform_scale_y": 2,
+      "transform_scale_z": 2,
+      "visible": true,
+      "object_list_version_id": 2,
+      "caption": "SnegovikBelokuriha_trek2.glb",
+      "captionLong": "SnegovikBelokuriha_trek2.glb\t(3D Model)",
+      "behaviours": [
+        {
+          "id": 1312807,
+          "behaviour_list_id": 7,
+          "page_object_id": -182100200,
+          "source_page_object_id": -182100200,
+          "vars": {
+            "Index": "0",
+            "Loop": "1",
+            "Stop_animation_on_last_frame": "1",
+            "Delay": 14
+          },
+          "created_at": "2023-12-29T08:45:40.000000Z",
+          "updated_at": "2023-12-29T08:45:40.000000Z"
+        },
+        {
+          "id": 1312808,
+          "behaviour_list_id": 12,
+          "page_object_id": -182100200,
+          "source_page_object_id": -182100200,
+          "vars": {
+            "Move_end_position": "0;-2.65;1.52",
+            "Move_speed": 9999.91,
+            "Delay": 14
+          },
+          "created_at": "2023-12-29T08:45:40.000000Z",
+          "updated_at": "2023-12-29T08:45:40.000000Z"
+        },
+        {
+          "id": 1312809,
+          "behaviour_list_id": 20,
+          "page_object_id": -182100200,
+          "source_page_object_id": -182100200,
+          "vars": {
+            "Event_name": "click_freeze"
+          },
+          "created_at": "2023-12-29T08:45:40.000000Z",
+          "updated_at": "2023-12-29T08:45:40.000000Z"
+        },
+        {
+          "id": 1313022,
+          "behaviour_list_id": 14,
+          "page_object_id": -182100200,
+          "source_page_object_id": -182100200,
+          "vars": {
+            "Move_end_position": "0;8;1.54",
+            "Move_speed": 9999.91,
+            "Delay": "0"
+          },
+          "created_at": "2023-12-29T11:04:04.000000Z",
+          "updated_at": "2023-12-29T11:04:04.000000Z"
+        }
+      ]
+    },
+    {
+      "id": -182100300,
+      "object_list_id": 3088,
+      "transform_pos_x": 0,
+      "transform_pos_y": 0,
+      "transform_pos_z": 0,
+      "transform_rot_x": 0,
+      "transform_rot_y": 0,
+      "transform_rot_z": 0,
+      "transform_rot_w": 0,
+      "transform_scale": 1,
+      "scene_template_transform": "",
+      "vars": {
+        "id": "G-Z7QQ1B6KEC"
+      },
+      "created_at": "2023-12-29T08:45:40.000000Z",
+      "updated_at": "2023-12-29T08:45:40.000000Z",
+      "transform_scale_x": 1,
+      "transform_scale_y": 1,
+      "transform_scale_z": 1,
+      "visible": true,
+      "object_list_version_id": 166,
+      "caption": "gtm-G-Z7QQ1B6KEC",
+      "captionLong": "gtm-G-Z7QQ1B6KEC\t(Google Analytics)",
+      "behaviours": []
+    },
+    {
+      "id": -182123900,
+      "object_list_id": 2,
+      "transform_pos_x": 0,
+      "transform_pos_y": 8,
+      "transform_pos_z": 1.54,
+      "transform_rot_x": 4.7123889803847,
+      "transform_rot_y": 0,
+      "transform_rot_z": 0,
+      "transform_rot_w": 0,
+      "transform_scale": 1,
+      "scene_template_transform": "",
+      "vars": {
+        "url": "https://mywebar-a.akamaihd.net/19562/347386/SnegovikBelokuriha_dop.glb"
+      },
+      "created_at": "2023-12-29T10:51:40.000000Z",
+      "updated_at": "2023-12-29T11:04:04.000000Z",
+      "transform_scale_x": 2,
+      "transform_scale_y": 2,
+      "transform_scale_z": 2,
+      "visible": true,
+      "object_list_version_id": 2,
+      "caption": "SnegovikBelokuriha_dop.glb",
+      "captionLong": "SnegovikBelokuriha_dop.glb\t(3D Model)",
+      "behaviours": [
+        {
+          "id": 1312989,
+          "behaviour_list_id": 7,
+          "page_object_id": -182123900,
+          "source_page_object_id": -182123900,
+          "vars": {
+            "Index": "0",
+            "Loop": "1",
+            "Stop_animation_on_last_frame": "1",
+            "Delay": "0"
+          },
+          "created_at": "2023-12-29T10:51:40.000000Z",
+          "updated_at": "2023-12-29T10:51:40.000000Z"
+        },
+        {
+          "id": 1312998,
+          "behaviour_list_id": 14,
+          "page_object_id": -182123900,
+          "source_page_object_id": -182100200,
+          "vars": {
+            "Move_end_position": "0;-2.65;1.54",
+            "Move_speed": 9999.91,
+            "Delay": "0"
+          },
+          "created_at": "2023-12-29T10:55:58.000000Z",
+          "updated_at": "2023-12-29T10:55:58.000000Z"
+        }
+      ]
+    },
+    {
+      "id": -182150600,
+      "object_list_id": 1,
+      "transform_pos_x": 0,
+      "transform_pos_y": -2.65,
+      "transform_pos_z": 0,
+      "transform_rot_x": 4.71,
+      "transform_rot_y": 0,
+      "transform_rot_z": 0,
+      "transform_rot_w": 0,
+      "transform_scale": 1,
+      "scene_template_transform": "",
+      "vars": {
+        "url": "https://mywebar-a.akamaihd.net/19562/347386/freeze2rev2.gif",
+        "Alpha_Transparency": "1"
+      },
+      "created_at": "2023-12-29T14:33:47.000000Z",
+      "updated_at": "2023-12-29T14:36:58.000000Z",
+      "transform_scale_x": 1,
+      "transform_scale_y": 1,
+      "transform_scale_z": 1,
+      "visible": true,
+      "object_list_version_id": 1,
+      "caption": "freeze2rev2.gif",
+      "captionLong": "freeze2rev2.gif\t(Изображение)",
+      "behaviours": []
+    },
+    {
+      "id": -182161100,
+      "object_list_id": 13,
+      "transform_pos_x": 0,
+      "transform_pos_y": 0,
+      "transform_pos_z": 0,
+      "transform_rot_x": 0,
+      "transform_rot_y": 0,
+      "transform_rot_z": 0,
+      "transform_rot_w": 0,
+      "transform_scale": 1,
+      "scene_template_transform": "",
+      "vars": {
+        "url": "https://mywebar-a.akamaihd.net/19562/347386/app36.json?_=0.8297409844420558"
+      },
+      "created_at": "2023-12-29T16:42:59.000000Z",
+      "updated_at": "2023-12-30T04:57:22.000000Z",
+      "transform_scale_x": 1,
+      "transform_scale_y": 1,
+      "transform_scale_z": 1,
+      "visible": true,
+      "object_list_version_id": 10,
+      "caption": "app36.json",
+      "captionLong": "app36.json\t(JSON (PRO Editor))",
+      "behaviours": []
+    }
+  ],
+  "isMywebarProject": true
+}
