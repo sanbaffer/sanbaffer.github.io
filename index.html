@@ -1,84 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/three.js/build/ar-threex.js"></script>
-    <style> body { margin:0; overflow:hidden; } </style>
-</head>
-<body>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
 
-<script>
-    // --- RENDER ---
-    var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
+    <script src="https://cdn.jsdelivr.net/npm/ar.js@3.4.4/aframe/build/aframe-ar.js"></script>
 
-    // --- SCENE ---
-    var scene = new THREE.Scene();
-    var camera = new THREE.Camera();
-    scene.add(camera);
+    <style>
+      body { margin: 0; overflow: hidden; }
+    </style>
+  </head>
+  <body>
 
-    // --- AR SOURCE ---
-    var arSource = new THREEx.ArToolkitSource({
-        sourceType: "webcam"
-    });
+    <a-scene
+      embedded
+      vr-mode-ui="enabled: false"
+      arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
+      renderer="precision: mediump; antialias: true;"
+    >
 
-    arSource.init(function(){
-        onResize();
-    });
+      <a-marker preset="hiro">
+        <a-sphere
+          position="0 0.5 0"
+          radius="0.3"
+          color="#ff0000"
+          animation="property: position; dir: alternate; dur: 700; easing: easeInOutSine; loop: true; to: 0 1.2 0">
+        </a-sphere>
+      </a-marker>
 
-    window.addEventListener('resize', function(){
-        onResize();
-    });
+      <a-entity camera></a-entity>
 
-    function onResize(){
-        arSource.onResizeElement();
-        arSource.copyElementSizeTo(renderer.domElement);
-        if (arContext.arController !== null) {
-            arSource.copyElementSizeTo(arContext.arController.canvas);
-        }
-    }
+    </a-scene>
 
-    // --- AR CONTEXT ---
-    var arContext = new THREEx.ArToolkitContext({
-        cameraParametersUrl: "https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/three.js/data/camera_para.dat",
-        detectionMode: "mono"
-    });
-
-    arContext.init(function(){
-        camera.projectionMatrix.copy(arContext.getProjectionMatrix());
-    });
-
-    // --- MARKER ---
-    var marker = new THREEx.ArMarkerControls(arContext, camera, {
-        type: "pattern",
-        patternUrl: "https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/three.js/data/patt.hiro"
-    });
-    scene.visible = false;
-
-    // --- 3D OBJECT (jump sphere) ---
-    var geometry = new THREE.SphereGeometry(0.5, 32, 32);
-    var material = new THREE.MeshNormalMaterial();
-    var sphere = new THREE.Mesh(geometry, material);
-    sphere.position.y = 0.5;
-    scene.add(sphere);
-
-    // --- LOOP ---
-    function animate(){
-        requestAnimationFrame(animate);
-
-        if (arSource.ready) {
-            arContext.update(arSource.domElement);
-            scene.visible = camera.visible;
-        }
-
-        sphere.position.y = 0.5 + Math.sin(Date.now() * 0.003) * 0.3;
-
-        renderer.render(scene, camera);
-    }
-
-    animate();
-</script>
-
-</body>
+  </body>
 </html>
