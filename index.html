@@ -18,15 +18,15 @@
       scene.add(camera);
 
       var arSource = new THREEx.ArToolkitSource({
-  sourceType: "webcam",
-  facingMode: "environment",
-  displayWidth: window.innerWidth,
-  displayHeight: window.innerHeight
-});
+        sourceType: "webcam",
+        facingMode: "environment",
+        displayWidth: window.innerWidth,
+        displayHeight: window.innerHeight
+        });
 
-arSource.init(function(){
-  setTimeout(() => arSource.onResize(), 1000);
-});
+      arSource.init(function(){
+        setTimeout(() => arSource.onResize(), 1000);
+      });
 
       arSource.init(function(){
         setTimeout(() => arSource.onResize(), 1000);
