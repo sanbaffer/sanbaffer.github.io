@@ -24,6 +24,10 @@
         displayHeight: window.innerHeight
         });
 
+      window.addEventListener('resize', function(){
+        arSource.onResize();
+      });
+
       arSource.init(function(){
         setTimeout(() => arSource.onResize(), 1000);
       });
