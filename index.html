@@ -1,56 +1,27 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
+<head>
+  <meta charset="utf-8">
   <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
-  <!-- we import arjs version without NFT but with marker + location based support -->
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  <body style="margin : 0px; overflow: hidden;">
-  <a-scene embedded arjs>
+</head>
+
+<body style="margin: 0; overflow: hidden;">
+  <a-scene
+    embedded
+    vr-mode-ui="enabled: false"
+    renderer="logarithmicDepthBuffer: true; precision: medium;"
+    arjs="sourceType: webcam; facingMode: environment; debugUIEnabled: false;">
+    
     <a-marker preset="hiro">
-        <a-entity 
-          position="0 0 0"
-          scale="0.05 0.05 0.05"
-          id="jsonModelContainer"
-          ></a-entity>
+      <a-entity
+        gltf-model="non/Assets/SnegovikBelokuriha_dop.glb"
+        scale="0.2 0.2 0.2"
+        position="0 0 0">
+      </a-entity>
     </a-marker>
+
     <a-entity camera></a-entity>
-</a-scene>
-
-  <script>
-    // Загружаем JSON модель из папки /non/
-    const loader = new THREE.ObjectLoader();
-
-    loader.load(
-      'non/Belokurikha_scene_threejs.json',
-
-      function (object) {
-        object.scale.set(0.05, 0.05, 0.05);
-        object.position.set(0, 0, 0);
-
-        // Если нужно — применяем текстуру
-        const texture = new THREE.TextureLoader().load('non/Assets/marker-present-4.jpg');
-
-        object.traverse((child) => {
-          if (child.isMesh) {
-            child.material.map = texture;
-            child.material.needsUpdate = true;
-          }
-        });
-
-        // Добавляем в A-Frame сущность
-        document
-          .querySelector('#jsonModelContainer')
-          .object3D
-          .add(object);
-      },
-
-      function (xhr) {
-        console.log((xhr.loaded / xhr.total * 100) + '% загружено');
-      },
-
-      function (error) {
-        console.error('Ошибка загрузки JSON модели:', error);
-      }
-    );
-  </script>
+  </a-scene>
 </body>
 </html>
