@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Простой AR — маркер Hiro</title>
+  <!-- A-Frame и AR.js -->
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
+  <style>html,body{height:100%;margin:0;}#hint{position:fixed;left:10px;bottom:10px;background:#0008;color:#fff;padding:8px;border-radius:6px;font-family:sans-serif}</style>
+</head>
+<body>
+  <!-- Простая сцена AR: использует веб-камеру и маркер Hiro -->
+  <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+
+    <!-- Маркер: поместите объект внутрь -->
+    <a-marker preset="hiro">
+      <!-- 3D-объект: коробка + подпись -->
+      <a-box position="0 0.5 0" rotation="0 45 0" scale="0.5 0.5 0.5"></a-box>
+      <a-text value="Привет, AR!" align="center" position="0 1.2 0" scale="2 2 2"></a-text>
+    </a-marker>
+
+    <!-- Камера AR -->
+    <a-entity camera></a-entity>
+  </a-scene>
+
+  <div id="hint">Откройте страницу в браузере с доступом к камере. Наведите камеру на маркер <strong>Hiro</strong>.</div>
+
+  <!-- Подсказка: изображение маркера Hiro можно найти по адресу:
+       https://raw.githubusercontent.com/AR-js-org/AR.js/master/three.js/examples/marker-training/examples/patterns/hiro.png
+       (скачайте и распечатайте или покажите с другого экрана) -->
+</body>
+</html>
