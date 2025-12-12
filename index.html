@@ -6,27 +6,46 @@
         <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
         <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-detector.js"></script>
         <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-handler.js"></script>
-        <style>
-.gif-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none; /* Чтобы AR.js продолжал работать */
-  z-index: 999999; 
-}
 
-.gif-fullscreen {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Масштаб под экран */
-}
+        <style>
+            .gif-overlay {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100vw;
+              height: 100vh;
+              pointer-events: none;
+              z-index: 999999;
+            }
+
+            .gif-fullscreen {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+
+            /* 📸 Кнопка фото */
+            #snapBtn {
+              position: fixed;
+              bottom: 20px;
+              left: 50%;
+              transform: translateX(-50%);
+              padding: 12px 20px;
+              background: white;
+              border: none;
+              border-radius: 10px;
+              font-size: 18px;
+              z-index: 999999;
+            }
         </style>
     </head>
 
     <body style="margin: 0; overflow: hidden;">
-        <h1>build 0.1.98</h1>
+        <h1>build 0.1.99</h1>
+
+        <!-- 📸 Кнопка фотографирования -->
+        <button id="snapBtn">📸 Сделать фото</button>
+
         <a-scene
             vr-mode-ui="enabled: false;"
             loading-screen="enabled: false;"
@@ -37,10 +56,7 @@
             gesture-detector
         >
             <a-assets>
-                <a-asset-item
-                    id="animated-asset"
-                    src="assets/trek1.glb"
-                ></a-asset-item>
+                <a-asset-item id="animated-asset" src="assets/trek1.glb"></a-asset-item>
             </a-assets>
 
             <a-marker
@@ -53,8 +69,6 @@
                 cursor="fuse: false; rayOrigin: mouse;"
                 id="markerA"
             >
-                <!-- position xzy-->
-                <!-- rotation X X V-->
                 <a-entity
                     id="bowser-model"
                     scale="1 1 1"
@@ -69,5 +83,21 @@
 
             <a-entity camera></a-entity>
         </a-scene>
+
+        <!-- 📸 Скрипт фото -->
+        <script>
+            document.getElementById("snapBtn").addEventListener("click", function () {
+                const scene = document.querySelector("a-scene");
+                const renderer = scene.renderer;
+                const canvas = renderer.domElement;
+
+                const dataURL = canvas.toDataURL("image/png");
+
+                const link = document.createElement("a");
+                link.download = "ar-photo.png";
+                link.href = dataURL;
+                link.click();
+            });
+        </script>
     </body>
 </html>
