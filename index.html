@@ -41,9 +41,18 @@
     </head>
 
     <body style="margin: 0; overflow: hidden;">
-        <h1>build 0.1.102</h1>
+        <h1>build 0.1.103</h1>
 
-        <button id="snapBtn">📸 Сделать фото</button>
+        <button id="captureBtn" style="
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    z-index: 99999;
+">
+📸 Сделать фото
+        </button>
 
         <a-scene
             vr-mode-ui="enabled: false;"
@@ -84,43 +93,32 @@
         </a-scene>
 
        <script>
-document.getElementById("snapBtn").onclick = function () {
+document.getElementById("captureBtn").addEventListener("click", function () {
+    // Используем канвас рендера THREE.js, а не DOM
+    const rendererCanvas = document.querySelector("canvas"); 
 
-    const scene = document.querySelector("a-scene");
-    const renderer = scene.renderer;
-    const glCanvas = renderer.domElement;
-    const video = document.querySelector("video");
-
-    if (!video) {
-        alert("Камера ещё не готова. Подожди 1–2 секунды.");
+    if (!rendererCanvas) {
+        alert("Канвас рендера не найден");
         return;
     }
 
-    // Синхронизация размеров
-    const width = video.videoWidth;
-    const height = video.videoHeight;
+    // Создаем временный канвас для сохранения
+    const exportCanvas = document.createElement("canvas");
+    const ctx = exportCanvas.getContext("2d");
 
-    // Создаем финальный холст нужного размера
-    const finalCanvas = document.createElement("canvas");
-    finalCanvas.width = width;
-    finalCanvas.height = height;
-    const ctx = finalCanvas.getContext("2d");
+    // копируем реальный размер WebGL
+    exportCanvas.width = rendererCanvas.width;
+    exportCanvas.height = rendererCanvas.height;
 
-    // ОТРИСОВКА КАМЕРЫ (как фон)
-    ctx.drawImage(video, 0, 0, width, height);
+    // рисуем WebGL-картинку без искажений
+    ctx.drawImage(rendererCanvas, 0, 0);
 
-    // ВАЖНО: Форсируем один дополнительный рендер WebGL прямо сейчас
-    renderer.render(scene.object3D, scene.camera);
-
-    // ОТРИСОВКА 3D поверх камеры
-    ctx.drawImage(glCanvas, 0, 0, width, height);
-
-    // Сохранение файла
+    // создаём ссылку для скачивания
     const link = document.createElement("a");
-    link.download = "ar-photo.png";
-    link.href = finalCanvas.toDataURL("image/png");
+    link.download = "photo.png";
+    link.href = exportCanvas.toDataURL("image/png");
     link.click();
-};
+});
 </script>
     </body>
 </html>
