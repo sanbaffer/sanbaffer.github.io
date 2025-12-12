@@ -41,9 +41,8 @@
     </head>
 
     <body style="margin: 0; overflow: hidden;">
-        <h1>build 0.1.99</h1>
+        <h1>build 0.1.100</h1>
 
-        <!-- 📸 Кнопка фотографирования -->
         <button id="snapBtn">📸 Сделать фото</button>
 
         <a-scene
@@ -72,7 +71,7 @@
                 <a-entity
                     id="bowser-model"
                     scale="1 1 1"
-                    rotation="0 0 -90"
+                    rotation="0 90 -90"
                     position="0 -1 -1"
                     animation-mixer="loop: repeat"
                     gltf-model="#animated-asset"
@@ -84,7 +83,6 @@
             <a-entity camera></a-entity>
         </a-scene>
 
-        <!-- 📸 Скрипт фото -->
         <script>
             document.getElementById("snapBtn").addEventListener("click", function () {
                 const scene = document.querySelector("a-scene");
