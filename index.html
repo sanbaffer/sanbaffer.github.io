@@ -41,7 +41,7 @@
     </head>
 
     <body style="margin: 0; overflow: hidden;">
-        <h1>build 0.1.103</h1>
+        <h1>build 0.1.104</h1>
 
         <button id="captureBtn" style="
     position: fixed;
@@ -94,26 +94,36 @@
 
        <script>
 document.getElementById("captureBtn").addEventListener("click", function () {
-    // Используем канвас рендера THREE.js, а не DOM
-    const rendererCanvas = document.querySelector("canvas"); 
 
-    if (!rendererCanvas) {
-        alert("Канвас рендера не найден");
+    // 1) Находим видео AR.js
+    const video = document.querySelector("video");
+    if (!video || video.readyState < 2) {
+        alert("Видео камеры не готово");
         return;
     }
 
-    // Создаем временный канвас для сохранения
+    // 2) Находим WebGL канвас
+    const glCanvas = document.querySelector("canvas");
+    if (!glCanvas) {
+        alert("WebGL канвас не найден");
+        return;
+    }
+
+    // 3) Создаем итоговое изображение
     const exportCanvas = document.createElement("canvas");
     const ctx = exportCanvas.getContext("2d");
 
-    // копируем реальный размер WebGL
-    exportCanvas.width = rendererCanvas.width;
-    exportCanvas.height = rendererCanvas.height;
+    // Размер берем такой же, как у WebGL рендера
+    exportCanvas.width = glCanvas.width;
+    exportCanvas.height = glCanvas.height;
 
-    // рисуем WebGL-картинку без искажений
-    ctx.drawImage(rendererCanvas, 0, 0);
+    // 4) Рисуем видео (фон камеры)
+    ctx.drawImage(video, 0, 0, exportCanvas.width, exportCanvas.height);
 
-    // создаём ссылку для скачивания
+    // 5) Рисуем WebGL рендер (3D модель)
+    ctx.drawImage(glCanvas, 0, 0);
+
+    // 6) Скачиваем
     const link = document.createElement("a");
     link.download = "photo.png";
     link.href = exportCanvas.toDataURL("image/png");
