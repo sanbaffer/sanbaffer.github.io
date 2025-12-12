@@ -41,7 +41,7 @@
     </head>
 
     <body style="margin: 0; overflow: hidden;">
-        <h1>build 0.1.104</h1>
+        <h1>build 0.1.105</h1>
 
         <button id="captureBtn" style="
     position: fixed;
@@ -93,44 +93,31 @@
         </a-scene>
 
        <script>
-document.getElementById("captureBtn").addEventListener("click", async function () {
+document.getElementById("captureBtn").addEventListener("click", async () => {
 
-    const video = document.querySelector("video");
+    // 1. Находим WebGL-каленас AR.js (он всегда первый)
     const glCanvas = document.querySelector("canvas");
 
-    if (!video || !glCanvas) {
-        alert("Видео или канвас не найдены");
+    if (!glCanvas) {
+        alert("Ошибка: WebGL canvas не найден");
         return;
     }
 
-    // Ждём чтобы видео точно имело размеры
-    await new Promise(r => setTimeout(r, 50));
-
-    // Берём реальные размеры
-    const videoWidth = video.videoWidth;
-    const videoHeight = video.videoHeight;
-
-    const glWidth = glCanvas.width;
-    const glHeight = glCanvas.height;
-
-    // Итоговое изображение — по размеру ВИДЕО (самое корректное)
+    // 2. Делаем копию без искажений
     const exportCanvas = document.createElement("canvas");
-    exportCanvas.width = videoWidth;
-    exportCanvas.height = videoHeight;
+    exportCanvas.width = glCanvas.width;
+    exportCanvas.height = glCanvas.height;
 
     const ctx = exportCanvas.getContext("2d");
 
-    // ---- 1) Рисуем видео без растяжения ----
-    ctx.drawImage(video, 0, 0, videoWidth, videoHeight);
+    // 3. ВАЖНО: заставляем движок дорисовать кадр
+    const sceneEl = document.querySelector("a-scene");
+    sceneEl.renderer.render(sceneEl.object3D, sceneEl.camera);
 
-    // ---- 2) Рисуем WebGL поверх ----
-    // ВАЖНО: приводим WebGL canvas к размеру видео
-    ctx.drawImage(glCanvas, 
-        0, 0, glWidth, glHeight,     // источник
-        0, 0, videoWidth, videoHeight // результат
-    );
+    // 4. Копируем WebGL пиксели правильно
+    ctx.drawImage(glCanvas, 0, 0);
 
-    // ---- 3) Скачиваем ----
+    // 5. Создаем PNG
     const link = document.createElement("a");
     link.download = "photo.png";
     link.href = exportCanvas.toDataURL("image/png");
