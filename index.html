@@ -41,7 +41,7 @@
     </head>
 
     <body style="margin: 0; overflow: hidden;">
-        <h1>build 0.1.108</h1>
+        <h1>build 0.1.109</h1>
 
 <button id="captureBtn" 
 style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
@@ -88,33 +88,51 @@ z-index:99999;padding:12px 20px;font-size:18px;border-radius:12px;">
         </a-scene>
 
        <script>
-document.getElementById("captureBtn").addEventListener("click", () => {
+function waitForARVideo() {
+    return new Promise(resolve => {
+        const scene = document.querySelector("a-scene");
+
+        const check = () => {
+            try {
+                const video = scene.systems["arjs"]?._arSource?.video;
+                if (video && video.readyState === video.HAVE_ENOUGH_DATA) {
+                    resolve(video);
+                    return;
+                }
+            } catch (e) {}
+
+            requestAnimationFrame(check);
+        };
+
+        check();
+    });
+}
+
+document.getElementById("captureBtn").addEventListener("click", async () => {
 
     const scene = document.querySelector("a-scene");
 
-    // AR.js видео-элемент
-    const video = scene.systems["arjs"]._arSource.video;
+    // ждем, пока AR.js реально включит камеру
+    const video = await waitForARVideo();
 
-    // WebGL canvas (модель, маркер)
+    // WebGL canvas (3D слой)
     const glCanvas = scene.renderer.domElement;
 
-    if (!video || !glCanvas) {
-        alert("Ошибка: камера или WebGL не найдены");
+    if (!glCanvas || !video) {
+        alert("Камера или WebGL канвас не найдены");
         return;
     }
 
-    // создаём финальный холст
+    // создаем финальный холст
     const exportCanvas = document.createElement("canvas");
-    const ctx = exportCanvas.getContext("2d");
-
-    // размеры кадра такие же как у камеры
     exportCanvas.width = video.videoWidth;
     exportCanvas.height = video.videoHeight;
+    const ctx = exportCanvas.getContext("2d");
 
-    // 1. рисуем КАМЕРУ
+    // 1. камера
     ctx.drawImage(video, 0, 0, exportCanvas.width, exportCanvas.height);
 
-    // 2. рисуем WebGL поверх камеры
+    // 2. накладываем 3D WebGL
     ctx.drawImage(glCanvas, 0, 0, exportCanvas.width, exportCanvas.height);
 
     // 3. сохраняем
