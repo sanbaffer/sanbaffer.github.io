@@ -41,7 +41,7 @@
     </head>
 
     <body style="margin: 0; overflow: hidden;">
-        <h1>build 0.1.105</h1>
+        <h1>build 0.1.106</h1>
 
         <button id="captureBtn" style="
     position: fixed;
@@ -93,31 +93,36 @@
         </a-scene>
 
        <script>
-document.getElementById("captureBtn").addEventListener("click", async () => {
+document.getElementById("captureBtn").addEventListener("click", () => {
 
-    // 1. Находим WebGL-каленас AR.js (он всегда первый)
-    const glCanvas = document.querySelector("canvas");
+    const scene = document.querySelector("a-scene");
 
-    if (!glCanvas) {
-        alert("Ошибка: WebGL canvas не найден");
+    // AR.js видео-элемент
+    const video = scene.systems["arjs"]._arSource.video;
+
+    // WebGL canvas (модель, маркер)
+    const glCanvas = scene.renderer.domElement;
+
+    if (!video || !glCanvas) {
+        alert("Ошибка: камера или WebGL не найдены");
         return;
     }
 
-    // 2. Делаем копию без искажений
+    // создаём финальный холст
     const exportCanvas = document.createElement("canvas");
-    exportCanvas.width = glCanvas.width;
-    exportCanvas.height = glCanvas.height;
-
     const ctx = exportCanvas.getContext("2d");
 
-    // 3. ВАЖНО: заставляем движок дорисовать кадр
-    const sceneEl = document.querySelector("a-scene");
-    sceneEl.renderer.render(sceneEl.object3D, sceneEl.camera);
+    // размеры кадра такие же как у камеры
+    exportCanvas.width = video.videoWidth;
+    exportCanvas.height = video.videoHeight;
 
-    // 4. Копируем WebGL пиксели правильно
-    ctx.drawImage(glCanvas, 0, 0);
+    // 1. рисуем КАМЕРУ
+    ctx.drawImage(video, 0, 0, exportCanvas.width, exportCanvas.height);
 
-    // 5. Создаем PNG
+    // 2. рисуем WebGL поверх камеры
+    ctx.drawImage(glCanvas, 0, 0, exportCanvas.width, exportCanvas.height);
+
+    // 3. сохраняем
     const link = document.createElement("a");
     link.download = "photo.png";
     link.href = exportCanvas.toDataURL("image/png");
