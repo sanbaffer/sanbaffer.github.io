@@ -55,7 +55,7 @@
     </head>
 
     <body style="margin: 0; overflow: hidden;">
-        <h1>build 0.1.112</h1>
+        <h1>build 0.1.113</h1>
 
 <button id="captureBtn" 
 style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
@@ -102,43 +102,20 @@ z-index:99999;padding:12px 20px;font-size:18px;border-radius:12px;">
         </a-scene>
 
        <script>
-window.onload = () => {
-    function waitForARVideo() {
-        return new Promise(resolve => {
-            const scene = document.querySelector("a-scene");
-            const check = () => {
-                try {
-                    const video = scene.systems["arjs"]?._arSource?.video;
-                    if (video && video.readyState === video.HAVE_ENOUGH_DATA) {
-                        resolve(video);
-                        return;
-                    }
-                } catch (e) {}
-                requestAnimationFrame(check);
-            };
-            check();
-        });
+document.getElementById("captureBtn").addEventListener("click", () => {
+    const scene = document.querySelector("a-scene");
+    const glCanvas = scene.renderer.domElement;
+
+    if (!glCanvas) {
+        alert("Canvas не найден");
+        return;
     }
 
-    document.getElementById("captureBtn").addEventListener("click", async () => {
-        const scene = document.querySelector("a-scene");
-        const video = await waitForARVideo();
-        const glCanvas = scene.renderer.domElement;
-
-        const exportCanvas = document.createElement("canvas");
-        exportCanvas.width = glCanvas.width;
-        exportCanvas.height = glCanvas.height;
-        const ctx = exportCanvas.getContext("2d");
-
-        ctx.drawImage(glCanvas, 0, 0, exportCanvas.width, exportCanvas.height);
-        ctx.drawImage(video, 0, 0, exportCanvas.width, exportCanvas.height);
-
-        const link = document.createElement("a");
-        link.download = "photo.png";
-        link.href = exportCanvas.toDataURL("image/png");
-        link.click();
-    });
-};
+    const link = document.createElement("a");
+    link.download = "photo.png";
+    link.href = glCanvas.toDataURL("image/png");
+    link.click();
+});
 </script>
     </body>
 </html>
