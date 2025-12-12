@@ -41,7 +41,7 @@
     </head>
 
     <body style="margin: 0; overflow: hidden;">
-        <h1>build 0.1.100</h1>
+        <h1>build 0.1.101</h1>
 
         <button id="snapBtn">📸 Сделать фото</button>
 
@@ -83,19 +83,39 @@
             <a-entity camera></a-entity>
         </a-scene>
 
-        <script>
-            document.getElementById("snapBtn").addEventListener("click", function () {
-                const scene = document.querySelector("a-scene");
-                const renderer = scene.renderer;
-                const canvas = renderer.domElement;
+       <script>
+document.getElementById("snapBtn").onclick = function () {
+    let scene = document.querySelector("a-scene");
+    let renderer = scene.renderer;
+    let glCanvas = renderer.domElement;
 
-                const dataURL = canvas.toDataURL("image/png");
+    // Берём исходный видео-поток камеры AR.js
+    let video = document.querySelector("video");
 
-                const link = document.createElement("a");
-                link.download = "ar-photo.png";
-                link.href = dataURL;
-                link.click();
-            });
-        </script>
+    if (!video) {
+        alert("Камера еще не включилась. Подожди 1–2 секунды.");
+        return;
+    }
+
+    // Создаём холст для финального снимка
+    let finalCanvas = document.createElement("canvas");
+    finalCanvas.width = glCanvas.width;
+    finalCanvas.height = glCanvas.height;
+
+    let ctx = finalCanvas.getContext("2d");
+
+    // ⬇ Нарисовать видеопоток камеры на холсте
+    ctx.drawImage(video, 0, 0, finalCanvas.width, finalCanvas.height);
+
+    // ⬇ Добавить WebGL-рендер поверх камеры
+    ctx.drawImage(glCanvas, 0, 0, finalCanvas.width, finalCanvas.height);
+
+    // ⬇ Сохранить PNG
+    let link = document.createElement("a");
+    link.download = "ar-photo.png";
+    link.href = finalCanvas.toDataURL("image/png");
+    link.click();
+};
+</script>
     </body>
 </html>
