@@ -93,37 +93,44 @@
         </a-scene>
 
        <script>
-document.getElementById("captureBtn").addEventListener("click", function () {
+document.getElementById("captureBtn").addEventListener("click", async function () {
 
-    // 1) Находим видео AR.js
     const video = document.querySelector("video");
-    if (!video || video.readyState < 2) {
-        alert("Видео камеры не готово");
-        return;
-    }
-
-    // 2) Находим WebGL канвас
     const glCanvas = document.querySelector("canvas");
-    if (!glCanvas) {
-        alert("WebGL канвас не найден");
+
+    if (!video || !glCanvas) {
+        alert("Видео или канвас не найдены");
         return;
     }
 
-    // 3) Создаем итоговое изображение
+    // Ждём чтобы видео точно имело размеры
+    await new Promise(r => setTimeout(r, 50));
+
+    // Берём реальные размеры
+    const videoWidth = video.videoWidth;
+    const videoHeight = video.videoHeight;
+
+    const glWidth = glCanvas.width;
+    const glHeight = glCanvas.height;
+
+    // Итоговое изображение — по размеру ВИДЕО (самое корректное)
     const exportCanvas = document.createElement("canvas");
+    exportCanvas.width = videoWidth;
+    exportCanvas.height = videoHeight;
+
     const ctx = exportCanvas.getContext("2d");
 
-    // Размер берем такой же, как у WebGL рендера
-    exportCanvas.width = glCanvas.width;
-    exportCanvas.height = glCanvas.height;
+    // ---- 1) Рисуем видео без растяжения ----
+    ctx.drawImage(video, 0, 0, videoWidth, videoHeight);
 
-    // 4) Рисуем видео (фон камеры)
-    ctx.drawImage(video, 0, 0, exportCanvas.width, exportCanvas.height);
+    // ---- 2) Рисуем WebGL поверх ----
+    // ВАЖНО: приводим WebGL canvas к размеру видео
+    ctx.drawImage(glCanvas, 
+        0, 0, glWidth, glHeight,     // источник
+        0, 0, videoWidth, videoHeight // результат
+    );
 
-    // 5) Рисуем WebGL рендер (3D модель)
-    ctx.drawImage(glCanvas, 0, 0);
-
-    // 6) Скачиваем
+    // ---- 3) Скачиваем ----
     const link = document.createElement("a");
     link.download = "photo.png";
     link.href = exportCanvas.toDataURL("image/png");
